@@ -1,0 +1,17 @@
+"""选择排序"""
+
+def select(lst):
+    a_2 = []
+    for x in range(0, len(lst)):
+        min = lst[x]
+        for y in range(x+1, len(lst)):
+            if lst[x] > lst[y]:
+                min = lst[y]
+        a_2.append(min)
+    return a_2
+
+
+if __name__ == '__main__':
+    a_1 = [1, 5, 9, 10, 89, 45, 86, 57]
+    a_2 = select(a_1)
+    [print(each, end=" ") for each in a_2]
