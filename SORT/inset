@@ -1,0 +1,22 @@
+#插入排序
+
+
+
+def swap(a, b, lst):
+    lst[a], lst[b] = lst[b], lst[a]
+
+
+def insert_sort(lst):
+    for x in range(1, len(lst)):
+        for y in range(x, 0, -1):
+            if lst[y] < lst[y-1]:
+                swap(y, y-1, lst)
+            else:
+                break
+    return lst
+
+
+if __name__ == '__main__':
+    a_1 = [1, 9, 5, 10, 89, 45, 86, 57]
+    a_2 = insert_sort(a_1)
+    [print(each, end=" ") for each in a_2]
