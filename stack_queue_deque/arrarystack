@@ -1,0 +1,37 @@
+# coding:utf-8
+
+
+class Empty(Exception):
+    """error for stack"""
+    pass
+
+
+class Arraystack(object):
+    """LILO"""
+    def __init__(self):
+        self.__data = []
+        self.__count = 0
+
+    def __len__(self):
+        return self.__count
+
+    def is_empty(self):
+        return not self.__count
+
+    def push(self, e):
+        self.__data.append(e)
+        self.__count += 1
+
+    def top(self):
+        if self.is_empty():
+            raise Empty('star=ck is empty')
+        return self.__data[-1]
+
+    def pop(self):
+        if self.is_empty():
+            raise Empty('star=ck is empty')
+        return self.__data.pop()
+
+
+if __name__ == '__main__':
+    pass
