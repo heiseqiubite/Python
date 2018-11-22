@@ -1,0 +1,44 @@
+# coding:utf-8
+
+
+class Empty(Exception):
+    pass
+
+
+class ArrayQueue(object):
+    """FIFO"""
+    DEFAULT_CAPACITY = 10
+    
+    def __init__(self):
+        self.__data = [None] * ArrayQueue.DEFAULT_CAPACITY
+        self.__size = 0
+        self.__front = 0
+        
+    def __len__(self):
+        return self.__size
+    
+    def is_empty(self):
+        return not self.__size
+    
+    def first(self):
+        if self.is_empty():
+            raise Empty("Queue is empty")
+        return self.__data[self.__front]
+    
+    def enqueue(self, e):
+        if self.__size == len(self.__data):
+            self.__resize(2 * len(self.__data))
+        avail = (self.__front + self.__size) % len(self.__data)
+        self.__data[avail] = e
+        self.__size += 1
+        if 0 < self.__size < len(self.__data) // 4:
+            self.__resize(len(self.__data)//2)
+        
+    def __resize(self, cap):
+        old = self.__data
+        self.__data = [None] * cap
+        walk = self.__front
+        for k in range(self.__size):
+            self.__data[k] = old[walk]
+            walk = (self.__front + self.__size) % len(old)
+        self.front = 0
